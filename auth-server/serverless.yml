@@ -23,12 +23,14 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  apiGateway:
+    shouldStartNameWithService: true
   lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
 #  stage: dev
   region: eu-central-1
-  timeout: 60 
+  timeout: 30 
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -68,6 +70,12 @@ functions:
     events:
       - http:
           path: api/get-auth-url
+          method: get
+  getAccessToken:
+    handler: handler.getAccessToken
+    events:
+      - http:
+          path: api/token/{code}
           method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
