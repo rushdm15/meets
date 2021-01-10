@@ -17,6 +17,12 @@ handleInputChanged = (event) => {
     });
   }
 
+  handleItemClicked = (suggestion) => {
+    this.setState({
+      query: suggestion
+    });
+  }
+
   render() {
     return (
       <div className="CitySearch">
@@ -28,12 +34,14 @@ handleInputChanged = (event) => {
         />
       <ul className="suggestions">
         {this.state.suggestions.map((suggestion) => (
-          <li key={suggestion}>{suggestion}</li>
+          <li 
+            key={suggestion}
+            onClick={() => this.handleItemClicked(suggestion)}>{suggestion}</li>
         ))}
-        <li key='all'>
+        <li> 
           <b>See all cities</b>
         </li>
-       </ul>
+      </ul>
       </div>
     );
   }
