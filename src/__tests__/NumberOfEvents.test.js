@@ -7,9 +7,28 @@ import { extractLocations } from "../api";
 
 
 describe('<NumberOfEvents /> component', () => {
-    test('render text input', () => {
-      const NumberOfEventsWrapper = shallow(<NumberOfEvents />);
-      expect(NumberOfEventsWrapper.find('.city')).toHaveLength(1);
+    let locations, NumberOfEventsWrapper;
+    beforeAll(() => {
+        locations = extractLocations(mockData);
+        NumberOfEventsWrapper = shallow(<NumberOfEvents locations={locations} />);
+    });
+
+  test('render text input', () => {
+    expect(NumberOfEventsWrapper.find('.city')).toHaveLength(4);
+  });
+
+  test('renders a list of suggestions', () => {
+    expect(NumberOfEventsWrapper.find('.suggestions')).toHaveLength(4);
+  });
+
+  test('renders text input correctly', () => {
+    const query = NumberOfEventsWrapper.state('query');
+    expect(NumberOfEventsWrapper.find('.city').prop('value')).toBe(query);
+  });
+
+  test('change state when text input changes', () => {
+    NumberOfEventsWrapper.setState({
+      query: 'Munich'
     });
     const eventObject = { target: { value: 'Berlin' }};
     NumberOfEventsWrapper.find('.city').simulate('change', eventObject);
