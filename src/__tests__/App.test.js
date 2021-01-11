@@ -12,7 +12,7 @@ describe('<App /> component', () => {
   });
 
     test('render list of events', () => {
-        expect(AppWrapper.find(EventList)).toHaveLength(1);
+      expect(AppWrapper.find(EventList)).toHaveLength(1);
     });
 
     test('render CitySearch', () => {
