@@ -98,9 +98,6 @@ module.exports.getAccessToken = async (event) => {
         console.error(err);
         return {
           statusCode: 500,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
           body: JSON.stringify(err),
         };
       });
@@ -137,6 +134,9 @@ module.exports.getAccessToken = async (event) => {
           // Respond with OAuth results
           return {
             statusCode: 200,
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
             body: JSON.stringify({ events: results.data.items }),
           };
         })
