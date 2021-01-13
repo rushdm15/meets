@@ -4,6 +4,7 @@ import App from '../App';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
+import { mockData } from '../mock-data';
 
 describe('<App /> component', () => {
   let AppWrapper;
