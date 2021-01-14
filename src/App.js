@@ -10,6 +10,31 @@ class App extends Component {
     events: [],
     locations: []
   }
+
+  componentDidMount() {
+    this.mounted = true;
+    getEvents().then((response) => {
+       if (this.mounted) {
+      this.setState({ events: response.events, locations: response.locations });
+       }
+    });
+  }
+
+  componentWillUnmount(){
+    this.mounted = false;
+  }
+  
+  updateEvents = (location) => {
+    getEvents().then((events) => {
+      const locationEvents = (location === 'all') ?
+        events :
+        events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents
+      });
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -19,17 +44,6 @@ class App extends Component {
       </div>
     );
   }
-}
-
-updateEvents = (location) => {
-  getEvents().then((events) => {
-    const locationEvents = (location === 'all') ?
-      events :
-      events.filter((event) => event.location === location);
-    this.setState({
-      events: locationEvents
-    });
-  });
 }
 
 export default App;
