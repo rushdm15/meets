@@ -15,7 +15,7 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((response) => {
        if (this.mounted) {
-      this.setState({ events: response.events, locations: response.locations });
+      this.setState({ events, locations: extractLocations(events) });
        }
     });
   }
@@ -23,7 +23,7 @@ class App extends Component {
   componentWillUnmount(){
     this.mounted = false;
   }
-  
+
   updateEvents = (location) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
