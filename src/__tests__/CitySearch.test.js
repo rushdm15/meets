@@ -62,5 +62,14 @@ describe('<CitySearch /> component', () => {
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
     expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
   });
+
+  test("suggestions list will appear upon having a focus on city input field", () => {
+    CitySearchWrapper.setState({
+      query: '',
+      suggestions: locations,
+    });
+    CitySearchWrapper.find('.city').simulate('focus');
+    expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({});
+  });
 });
 
