@@ -34,11 +34,17 @@ handleInputChanged = (event) => {
           value={this.state.query}
           onChange={this.handleInputChanged}
         />
-      <ul className="suggestions">
-        <li onClick={() => this.handleItemClicked("all")}>
-          <b>See all cities</b>
-        </li>
-      </ul>
+          <ul className="suggestions">
+            {this.state.suggestions.map((suggestion) => (
+              <li
+                key={suggestion}
+                onClick={() => this.handleItemClicked(suggestion)}
+              >{suggestion}</li>
+            ))}
+            <li onClick={() => this.handleItemClicked("all")}>
+              <b>See all cities</b>
+            </li>
+          </ul>
       </div>
     );
   }
