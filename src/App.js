@@ -9,7 +9,8 @@ import  "./nprogress.css";
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [],
+    NumberOfEvents: 32
   }
 
   componentDidMount() {
@@ -25,11 +26,21 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    
     getEvents().then((events) => {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents
+      });
+    });
+
+    getEvents().then((events) => {
+      const locationEvents = (eventCount === 'all') ?
+        events :
+        events.filter((event) => event.location === eventCount);
       this.setState({
         events: locationEvents
       });
