@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CitySearch from './CitySearch';
-import Event from './Event';
+// import Event from './Event';
 
 class EventList extends Component {
   render() {
