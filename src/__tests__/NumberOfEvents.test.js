@@ -29,43 +29,4 @@ describe('<NumberOfEvents /> component', () => {
     NumberOfEventsWrapper.find('.city').simulate('change', eventObject);
     expect(NumberOfEventsWrapper.state('query')).toBe('Berlin');
   });
-
-  test('render list of suggestions correctly', () => {
-    const locations = extractLocations(mockData);
-    NumberOfEventsWrapper.setState({ suggestions: locations });
-    const suggestions = NumberOfEventsWrapper.state('suggestions');
-    expect(NumberOfEventsWrapper.find('.suggestions li')).toHaveLength(suggestions.length + 1);
-    for (let i = 0; i < suggestions.length; i += 1) {
-      expect(NumberOfEventsWrapper.find('.suggestions li').at(i).text()).toBe(suggestions[i]);
-    }
-  });
-
-  test('suggestion list match the query when changed', () => {
-    NumberOfEventsWrapper.setState({ query: '', suggestions: [] });
-    NumberOfEventsWrapper.find(".city").simulate("change", {
-      target: { value: "Berlin" },
-    });
-    const query = NumberOfEventsWrapper.state("query");
-    const filteredLocations = locations.filter((location) => {
-      return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
-    });
-    expect(NumberOfEventsWrapper.state("suggestions")).toEqual(filteredLocations);
-  });
-
-  test("selecting a suggestion should change query state", () => {
-    NumberOfEventsWrapper.setState({
-      query: 'Berlin'  });
-    const suggestions = NumberOfEventsWrapper.state('suggestions');
-    NumberOfEventsWrapper.find('.suggestions li').at(0).simulate('click');
-    expect(NumberOfEventsWrapper.state("query")).toBe(suggestions[0]);
-  });
-
-  test("suggestions list will appear upon having a focus on city input field", () => {
-    NumberOfEventsWrapper.setState({
-      query: '',
-      suggestions: locations,
-    });
-    NumberOfEventsWrapper.find('.city').simulate('focus');
-    expect(NumberOfEventsWrapper.find('.suggestions').prop('style')).toEqual({});
-  });
 });
