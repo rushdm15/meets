@@ -3,17 +3,14 @@ import React, { Component } from "react";
 
 class Event extends Component {
   state = {
-    showDetails: false
+    showDetails: false,
   };
 
   handleShowDetails = () => {
-    if(this.state.showDetails === false) {
-      this.setState({showDetails: true});
-    }
-    else {
-      this.setState({showDetails: false});
-    }
-  }
+    this.setState((prevState) => ({
+      showDetails: !prevState.showDetails,
+    }));
+  };
 
   render() {
     const { event } = this.props;
@@ -25,7 +22,7 @@ class Event extends Component {
           <p className="event_name">{event.summary}</p>
           <p className="event_location">{event.start.dateTime}</p>
 
-          <button onClick={() => this.handleShowDetails()}>
+          <button onClick={() => this.handleShowDetails()} className="buttonDetails">
             {showDetails ? "Hide Details" : "Show Details"}
           </button>
         </div>
