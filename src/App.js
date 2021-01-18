@@ -36,15 +36,6 @@ class App extends Component {
         events: locationEvents
       });
     });
-
-    getEvents().then((events) => {
-      const locationEvents = (eventCount === 'all') ?
-        events :
-        events.filter((event) => event.location === eventCount);
-      this.setState({
-        events: locationEvents
-      });
-    });
   }
 
   render() {
