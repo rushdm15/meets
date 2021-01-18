@@ -1,32 +1,34 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
-import { mockData } from '../mock-data';
-import { extractLocations } from '../api';
 
 describe('<NumberOfEvents /> component', () => {
-    let locations, NumberOfEventsWrapper;
-    beforeAll(() => {
-        locations = extractLocations(mockData);
-        NumberOfEventsWrapper = shallow(<NumberOfEvents locations={locations} />);
-    });
 
-  test('render text input', () => {
-    expect(NumberOfEventsWrapper.find('.city')).toHaveLength(1);
+  let NumberOfEventsWrapper;
+  beforeAll(() => {
+    NumberOfEventsWrapper = shallow(
+      <NumberOfEvents
+        length='2'
+        updateEventCount={() => { }} />
+    );
+  });
+
+  test('render input element', () => {
+    expect(NumberOfEventsWrapper.find('.viewNumber')).toHaveLength(1);
   });
 
   test('renders text input correctly', () => {
-    const query = NumberOfEventsWrapper.state('query');
-    expect(NumberOfEventsWrapper.find('.city').prop('value')).toBe(query);
+    const eventCount = NumberOfEventsWrapper.state('eventCount');
+    expect(NumberOfEventsWrapper.find('.viewNumber').prop('value')).toBe(eventCount);
   });
 
-  test('change state when text input changes', () => {
+  test('change state when number input changes', () => {
     NumberOfEventsWrapper.setState({
-      query: 'Munich'
+      eventCount: 32
     });
-    const eventObject = { target: { value: 'Berlin' }};
-    NumberOfEventsWrapper.find('.city').simulate('change', eventObject);
-    expect(NumberOfEventsWrapper.state('query')).toBe('Berlin');
+    const eventObject = { target: { value: 17 } };
+    NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
+    expect(NumberOfEventsWrapper.state('eventCount')).toBe(17);
   });
+
 });

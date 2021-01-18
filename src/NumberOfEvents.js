@@ -1,56 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class NumberOfEvents extends Component {
- state = {
-    query: '',
-    suggestions: [],
-    showSuggestions: undefined
-}
 
-handleInputChanged = (event) => {
-    const value = event.target.value;
-    const suggestions = this.props.locations.filter((location) => {
-        return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-    });
-    this.setState({ 
-      query: value,
-      suggestions,
-    });
+  // use default 32
+  state = {
+    eventCount: 32
   }
 
-  handleItemClicked = (suggestion) => {
-    this.setState({
-      query: suggestion,
-      showSuggestions: false
-    });
+  handleNumberChanged = (event) => {
+    const value = event.target.value;
+    this.setState({ eventCount: value });
 
-    this.props.updateEvents(suggestion);
+    // if user has input value, call updateEventCount() in App.js
+    if (value !== "") {
+      this.props.updateEventCount(value);
+    }
   }
 
   render() {
-    return (
-      <div className="NumberOfEvents">
-        <input
-          type="text"
-          className="city"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-          onFocus={() => { this.setState({ showSuggestions: true }) }}
-        />
-          <ul className="suggestions"
-            style={this.state.showSuggestions ? {}: { display: 'none' }}>
-              {this.state.suggestions.map((suggestion) => (
-              <li 
-                key={suggestion}
-                onClick={() => this.handleItemClicked(suggestion)}>{suggestion}</li>
-            ))}
-            <li onClick={() => this.handleItemClicked("all")}> 
-              <b>See all cities</b>
-            </li>
-          </ul>
-      </div>
-    );
+    return <div className="NumberOfEvents">
+      <input
+        type="number"
+        className="viewNumber"
+        value={this.state.eventCount}
+        onChange={this.handleNumberChanged}
+      />
+    </div>;
   }
 }
-
 export default NumberOfEvents;
