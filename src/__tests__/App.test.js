@@ -67,21 +67,55 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  // test("selecting CitySearch input reveals the suggestions list", () => {
-  //   CitySearchWrapper.find('.city').simulate('focus');
-  //   expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
-  //   expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
-  // });
+  test('get number-limited list of events matching the city selected by the user', async () => {
+    const AppWrapper = mount(<App />);
+    const CitySearchWrapper = AppWrapper.find(CitySearch);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const locations = extractLocations(mockData);
+    CitySearchWrapper.setState({ suggestions: locations });
+    const wantedIndex = Math.floor(Math.random() * (20));
+    NumberOfEventsWrapper.setState({ eventCount: wantedIndex })
+    const suggestions = CitySearchWrapper.state('suggestions');
+    const selectedIndex = Math.floor(Math.random() * (suggestions.length));
+    const selectedCity = suggestions[selectedIndex];
+    await CitySearchWrapper.instance().handleItemClicked(selectedCity);
+    const allEvents = await getEvents();
+    const eventsToShow = allEvents.filter(event => event.location === selectedCity);
+    const filterToShow = eventsToShow.slice(0, wantedIndex)
+    expect(AppWrapper.state('events')).toEqual(filterToShow);
+    AppWrapper.unmount();
+  });
 
-  // test("selecting a suggestion should hide the suggestions list", () => {
-  //   CitySearchWrapper.setState({
-  //     query: 'Berlin',
-  //     showSuggestions: undefined
-  //   });
-  //   CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
-  //   expect(CitySearchWrapper.state('showSuggestions')).toBe(false);
-  //   expect(CitySearchWrapper.find('.suggestions').prop('style')).toEqual({ display: 'none' });
-  // });
+  test('App passes "showEventCount" state as a prop to EventList', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.setState({ showEventCount: 10 });
+    const AppEventsState = AppWrapper.state('showEventCount');
+    expect(AppEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(EventList).props().showEventCount).toEqual(AppEventsState);
+    AppWrapper.unmount();
+  });
+
+  test('no change if no user number selection', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.setState({ showEventCount: 32 })
+    const AppEventsState = AppWrapper.state('showEventCount');
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const eventObject = { target: { value: "" } };
+    NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
+    expect(AppEventsState).not.toEqual(undefined);
+    expect(AppWrapper.state('showEventCount')).toEqual(32);
+    AppWrapper.unmount();
+  });
+
+  test('get correct number of events as selected by the user', () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const eventObject = { target: { value: 14 } };
+    NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
+    expect(NumberOfEventsWrapper.state('eventCount')).toBe(14);
+    expect(AppWrapper.state('showEventCount')).toEqual(NumberOfEventsWrapper.state('eventCount'));
+    AppWrapper.unmount();
+  });
 });
 
 
