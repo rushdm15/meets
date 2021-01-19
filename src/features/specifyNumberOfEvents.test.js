@@ -8,8 +8,8 @@ import CitySearch from '../CitySearch';
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
-    test('When user hasnt specified a number, 32 is the default number', ({ given, when, then }) => {
-      given('that a user hasnt specified the number of events per page', () => {
+    test('When user hasn\'t specified a number, 32 is the default number', ({ given, when, then }) => {
+      given('that a user hasn\'t specified the number of events per page', () => {
   
       });
       let AppWrapper;
