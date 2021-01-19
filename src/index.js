@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorker from './serviceWorker';
+import * as atatus from 'atatus-js';
 
 ReactDOM.render(
   <React.StrictMode>
