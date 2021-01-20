@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import * as atatus from 'atatus-js';
+import * as atatus from 'atatus-spa';
 
 ReactDOM.render(<App />, document.getElementById('root')
 );
