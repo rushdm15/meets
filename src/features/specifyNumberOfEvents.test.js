@@ -19,7 +19,7 @@ defineFeature(feature, test => {
   
       then('32 event elements will display on the page', () => {
         AppWrapper.update();
-        expect(AppWrapper.find('.event')).toBeLessThanOreEqual(32);
+        expect((AppWrapper.find('.event')).length).toBeLessThanOrEqual(32);
       });
     });
   
@@ -36,8 +36,8 @@ defineFeature(feature, test => {
   
       then('there should be a dial button to limit the number of events', () => {
         const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-        NumberOfEventsWrapper.setState({NumberOfEvents: 10});
-        expect(NumberOfEventsWrapper.state('NumberOfEvents')).toBe('10');
+        NumberOfEventsWrapper.setState({NumberOfEvents: "10"});
+        expect(NumberOfEventsWrapper.state('NumberOfEvents')).toBe("10");
       });
     });
   });
