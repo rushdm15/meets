@@ -6,7 +6,8 @@ Feature: SHOW/HIDE AN EVENTS DETAILS
         Then the elements are closed to allow more room for events
 
     Scenario: User can expand an event to see its details
-        Given the user searched for event info
+        Given app loaded
+        And the list of events has been loaded
         When the user clicks on the event element
         Then the element should expand
 
