@@ -16,7 +16,7 @@ defineFeature(feature, test => {
       });
 
       when('the user is on the events page', () => {
-        AppWrapper = mount(<App />);
+        AppWrapper.update();
         expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
       });
   
@@ -29,14 +29,19 @@ defineFeature(feature, test => {
       let AppWrapper;
       given('app loaded', () => {
         AppWrapper = mount(<App />);
-    });
+      });
+    
+      and('the list of events has been loaded', () => {
+        AppWrapper.update();
+        expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      });
   
       when('the user clicks on the event element', () => {
-        CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Berlin' } });  
+        AppWrapper.find('.buttonDetails').at(0).simulate('click');  
       });
   
       then('the element should expand', () => {
-        expect(AppWrapper.find('.event-details')).toHaveLength(1);  
+        expect(AppWrapper.find('.eventDetails')).toHaveLength(0);  
       });
     });
   
@@ -48,11 +53,12 @@ defineFeature(feature, test => {
       });
   
       when('the user clicks to collapse the event element', () => {
-        AppWrapper.find('.event .details-button').at(0).simulate('click');  
+        AppWrapper.update();
+        AppWrapper.find('.buttonDetails').at(0).simulate('click');  
       });
   
       then('the elememt hides the info to make room for other event elements', () => {
-        expect(AppWrapper.find('.event .event-details')).toHaveLength(0);  
+        expect(AppWrapper.find('.eventDetails')).toHaveLength(0);  
       });
     });
   });
