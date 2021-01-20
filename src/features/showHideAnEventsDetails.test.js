@@ -9,8 +9,9 @@ const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
 defineFeature(feature, test => {
     test('An event element is collapsed by default', ({ given, when, then }) => {
-      let AppWrapper;      
-      given('the user hasnt opened the element', () => {
+      let AppWrapper;  
+
+      given('the user hasn\'t opened the element', () => {
         AppWrapper = mount(<App />);  
       });
 
@@ -24,9 +25,9 @@ defineFeature(feature, test => {
       });
     });
   
-    test('User can expand an event to see its details', ({ given, when, then }) => {
+    test('User can expand an event to see its details', ({ given, and, when, then }) => {
       let AppWrapper;
-      given('the user searched for event info', () => {
+      given('app loaded', () => {
         AppWrapper = mount(<App />);
     });
   
@@ -40,9 +41,9 @@ defineFeature(feature, test => {
     });
   
   
-    test('User can collapse an event to hide its details', ({ given, and, when, then }) => {
+    test('User can collapse an event to hide its details', ({ given, when, then }) => {
       let AppWrapper;
-      given('user has opened the event element', () => {
+      given('the user has opened the event element', () => {
         AppWrapper = mount(<App />);
       });
   
