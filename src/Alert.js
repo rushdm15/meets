@@ -19,7 +19,7 @@ class Alert extends Component {
       </div>
     );
   }
-}
+};
 
 class InfoAlert extends Alert {
     constructor(props) {
@@ -55,7 +55,7 @@ class InfoAlert extends Alert {
             </div>
         );
      }
-  }
+  };
 
 class ErrorAlert extends Component {
     constructor(props) {
@@ -76,5 +76,6 @@ class ErrorAlert extends Component {
         </div>
       );
     }
-  }  
+  };  
 
+export { InfoAlert, ErrorAlert }
