@@ -18,8 +18,27 @@ class NumberOfEvents extends Component {
   //   }
   // }
 
+  handleNumberChanged = (event) => {
+    const eventCount = event.target.value;
+    // this.setState({ eventCount: value});
+    if (eventCount < 1) {
+      return this.setState({
+        eventCount: '',
+        errorText: 'Number must be between 1 and 32',
+      });
+    } else if (eventCount > 32) {
+      return this.setState({
+        eventCount: '',
+        errorText: 'Number must be between 1 and 32',
+      });
+    } else {
+      this.setState({
+        eventCount,
+        errorText: '',
+      });
+      this.props.updateEventCount(eventCount);
     }
-  }
+  };
 
   render() {
     return <div className="NumberOfEvents">
