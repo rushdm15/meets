@@ -104,3 +104,34 @@ export const getEvents = async () => {
     return result.data.events;
   }
 };
+
+window.addEventListener("load", () => {
+  function handleNetworkChange(event) {
+    if (navigator.onLine) {
+      document.body.classList.remove("offline");
+    } else {
+      document.body.classList.add("offline");
+    }
+  }
+
+  window.addEventListener("online", handleNetworkChange);
+  window.addEventListener("offline", handleNetworkChange);
+});
+
+
+// navigator.onLine
+// window.addEventListener('online', listener)
+// window.addEventListener('offline', listener)
+
+// var target = document.getElementById('target');
+
+// function handleStateChange() {
+//   var timeBadge = new Date().toTimeString().split(' ')[0];
+//   var newState = document.createElement('p');
+//   var state = navigator.onLine ? 'online' : 'offline';
+//   newState.innerHTML = '' + timeBadge + ' Connection state changed to ' + state + '.';
+//   target.appendChild(newState);
+// }
+
+// window.addEventListener('online', handleStateChange);
+// window.addEventListener('offline', handleStateChange);
