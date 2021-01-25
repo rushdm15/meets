@@ -3,6 +3,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import EventGenre from './EventGenre.js';
 import './App.css';
 import  "./nprogress.css";
 import { ScatterChart, Scatter, XAxis, YAxis, 
@@ -64,8 +65,9 @@ class App extends Component {
           numberOfEvents={numberOfEvents}
         />       
          <h4>Events in each city</h4>
-
-        <ResponsiveContainer height={400} >
+    <div className="data-vis-wrapper">
+       <EventGenre events={events}  />
+       <ResponsiveContainer height={400} >
          <ScatterChart
           margin={{
             top: 20, right: 20, bottom: 20, left: 20,
@@ -77,8 +79,9 @@ class App extends Component {
           <Scatter data={this.getData()} fill="#8884d8" />
          </ScatterChart>
         </ResponsiveContainer>
-        <EventList events={events} />
-      </div>
+      </div>  
+      <EventList events={events} />
+    </div>
     );
   }
 
