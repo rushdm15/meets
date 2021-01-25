@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, 
-    // Cell, 
-    ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
@@ -40,6 +38,9 @@ const EventGenre = ({ events }) => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                 >
+                {
+                data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                }
                 </Pie>    
             </PieChart>
         </ResponsiveContainer>
