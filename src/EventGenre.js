@@ -6,10 +6,8 @@ import { PieChart, Pie,
 const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
     
-    useEffect(() => { 
-        setData(() => getData());
 // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [events]);
+    useEffect(() => { setData(() => getData()); }, [events]);
 
   const getData = () => {
     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
