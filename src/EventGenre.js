@@ -22,9 +22,6 @@ const EventGenre = ({ events }) => {
     //     { name: 'Group D', value: 200 },
     // ];
 
-// eslint-disable-next-line 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
     return (
         <ResponsiveContainer height={400} >
             <PieChart width={400} height={400}>
