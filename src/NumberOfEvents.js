@@ -18,22 +18,25 @@ class NumberOfEvents extends Component {
   //   }
   // }
 
-  handleInputChanged = (event) => {
-    const value = event.target.value;
-    this.props.updateEvents(null, value);
+  handleNumberChanged = (event) => {
+    const eventCount = event.target.value;
     // this.setState({ eventCount: value});
-    if (value < 1) {
+    if (eventCount < 1) {
       return this.setState({
+        eventCount: '',
         errorText: 'Number must be between 1 and 32',
       });
-    } else if (value > 32) {
+    } else if (eventCount > 32) {
       return this.setState({
+        eventCount: '',
         errorText: 'Number must be between 1 and 32',
       });
     } else {
       this.setState({
+        eventCount,
         errorText: '',
       });
+      this.props.updateEventCount(eventCount);
     }
   };
 
@@ -43,7 +46,7 @@ class NumberOfEvents extends Component {
         type="number"
         className="viewNumber"
         value={this.state.eventCount}
-        onChange={this.handleInputChanged}
+        onChange={this.handleNumberChanged}
       />
       <ErrorAlert text={this.state.infoText} />
     </div>;
