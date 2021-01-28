@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
+
 describe('<NumberOfEvents /> component', () => {
 
   let NumberOfEventsWrapper;
@@ -9,7 +10,10 @@ describe('<NumberOfEvents /> component', () => {
     NumberOfEventsWrapper = shallow(
       <NumberOfEvents
         length='2'
-        updateEventCount={() => { }} />
+        updateEventCount={() => {}}
+        updateEvents={() => {}}
+        />
+
     );
   });
 

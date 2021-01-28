@@ -14,7 +14,7 @@ class App extends Component {
     events: [],
     locations: [],
     userFilter: [],
-    NumberOfEvents: 32
+    numberOfEvents: 32
   }
 
   componentDidMount() {

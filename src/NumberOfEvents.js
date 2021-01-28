@@ -5,7 +5,7 @@ class NumberOfEvents extends Component {
 
   // use default 32
   state = {
-    eventCount: 32
+    eventCount: this.props.numberOfEvents || 32
   }
 
   // handleNumberChanged = (event) => {
@@ -21,7 +21,7 @@ class NumberOfEvents extends Component {
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.props.updateEvents(null, value);
-    this.setState({ NumberOfEvents: value});
+    this.setState({ eventCount: value});
     if (value < 1) {
       return this.setState({
         infoText: 'Number must be between 1 and 32',
