@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    const { locations, numberOfEvents, events } = this.state;
+    // const { locations, numberOfEvents, events } = this.state;
     return (
       <div className="App">
         <h1>Meet App</h1>
@@ -86,7 +86,7 @@ class App extends Component {
          </ScatterChart>
         </ResponsiveContainer>
       </div>  
-      <EventList events={events} />
+      <EventList events={this.state.events} />
     </div>
     );
   }
