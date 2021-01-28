@@ -59,10 +59,13 @@ class App extends Component {
       <div className="App">
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
-        <CitySearch updateEvents={this.updateEvents} locations={locations} />
+        <CitySearch 
+          updateEvents={this.updateEvents} 
+          locations={this.state.locations} 
+        />
         <NumberOfEvents
           updateEvents={this.updateEvents}
-          numberOfEvents={numberOfEvents}
+          numberOfEvents={this.state.numberOfEvents}
         />       
          {/* <h4>Events in each city</h4> */}
     <div className="data-vis-wrapper">
