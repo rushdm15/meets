@@ -32,7 +32,7 @@ const EventGenre = ({ events }) => {
                     data={data}
                     cx={200}
                     cy={200}
-                    labelline={false}
+                    labelLine={false}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
@@ -44,7 +44,6 @@ const EventGenre = ({ events }) => {
                 </Pie>    
             </PieChart>
         </ResponsiveContainer>
-
     );
 }
 
