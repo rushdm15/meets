@@ -38,7 +38,7 @@
   }
 }
 
-data-vis-wrapper {
+.data-vis-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
