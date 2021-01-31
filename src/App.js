@@ -105,7 +105,7 @@ getData = () => {
        <ResponsiveContainer height={400} >
          <ScatterChart
           margin={{
-            top: 20, right: 20, bottom: 20, left: 20,
+            top: 25, right: 20, bottom: 25, left: 20,
           }}>
           <CartesianGrid />
           <XAxis type="category" dataKey="city" name="city" />
