@@ -8,16 +8,6 @@ class NumberOfEvents extends Component {
     eventCount: this.props.numberOfEvents || 32
   }
 
-  // handleNumberChanged = (event) => {
-  //   const value = event.target.value;
-  //   this.setState({ eventCount: value });
-
-  //   // if user has input value, call updateEventCount() in App.js
-  //   if (value !== "") {
-  //     this.props.updateEventCount(value);
-  //   }
-  // }
-
   handleInputChanged = (event) => {
     const value = event.target.value;
     this.props.updateEvents(null, value);
