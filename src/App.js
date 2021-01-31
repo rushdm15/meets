@@ -30,19 +30,30 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    const { currentLocation, numberOfEvents } = this.state;
+    if (location) {
     getEvents().then((events) => {
-      const showEventCount = this.state.showEventCount;
-
       const locationEvents = (location === 'all')
         ? events
         : events.filter((event) => event.location === location);
-
-      const filteredEvents = locationEvents.slice(0, showEventCount)
-
+      const filteredEvents = locationEvents.slice(0, numberOfEvents)
       this.setState({
         // new array matching locations and showEventCount filter.
-        events: filteredEvents
+        events: filteredEvents,
+        currentLocation: location,
+      });
+    });
+  } else {
+    getEvents().then((events) => {
+      const locationEvents =
+        currentLocation === "all"
+          ? events
+          : events.filter((event) => event.location === currentLocation);
+      const filteredEvents = locationEvents.slice(0, eventCount);
+      this.setState({
+        events: filteredEvents,
+        numberOfEvents: eventCount,
       });
     });
   }
