@@ -103,10 +103,7 @@ getData = () => {
           events={this.state.events}       
        />
        <ResponsiveContainer height={400} >
-         <ScatterChart
-          margin={{
-            top: 25, right: 20, bottom: 25, left: 20,
-          }}>
+         <ScatterChart>
           <CartesianGrid />
           <XAxis type="category" dataKey="city" name="city" />
           <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
