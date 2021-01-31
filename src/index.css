@@ -14,7 +14,8 @@ code {
 
 .offline-notification {
   transition: transform 0.3s;
-  transform: translateY(-100%) translateX(-50%);
+  transform: translateY(-100%) 
+translateX(-50%);
   position: fixed;
   left: 50%;
   background: #222;
