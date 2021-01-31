@@ -41,7 +41,7 @@ class NumberOfEvents extends Component {
     return <div className="NumberOfEvents">
       <input
         type="number"
-        className="viewNumber"
+        className="event-number"
         value={this.state.numberOfEvents}
         onChange={this.handleInputChanged}
       />

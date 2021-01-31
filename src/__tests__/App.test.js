@@ -101,7 +101,7 @@ describe('<App /> integration', () => {
     const AppEventsState = AppWrapper.state('numberOfEvents');
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const eventObject = { target: { value: "" } };
-    NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
+    NumberOfEventsWrapper.find('.event-number').simulate('change', eventObject);
     expect(AppEventsState).not.toEqual(undefined);
     expect(AppWrapper.state('numberOfEvents')).toEqual(32);
     AppWrapper.unmount();
@@ -111,7 +111,7 @@ describe('<App /> integration', () => {
     const AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const eventObject = { target: { value: 32 } };
-    NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
+    NumberOfEventsWrapper.find('.event-number').simulate('change', eventObject);
     expect(NumberOfEventsWrapper.state('eventCount')).toBe(32);
     // expect(AppWrapper.state('showEventCount')).toEqual(NumberOfEventsWrapper.state('eventCount'));
     AppWrapper.unmount();
