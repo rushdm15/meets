@@ -30,12 +30,6 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEventCount = (number) => {
-    this.setState({
-      showEventCount: number
-    });
-  };
-
   updateEvents = (location) => {
     getEvents().then((events) => {
       const showEventCount = this.state.showEventCount;
