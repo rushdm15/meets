@@ -13,7 +13,6 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    userFilter: [],
     numberOfEvents: 32,
     currentLocation: "all"
   }
