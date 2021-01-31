@@ -74,7 +74,7 @@ describe('<App /> integration', () => {
     const locations = extractLocations(mockData);
     CitySearchWrapper.setState({ suggestions: locations });
     const wantedIndex = Math.floor(Math.random() * (20));
-    NumberOfEventsWrapper.setState({ eventCount: wantedIndex })
+    NumberOfEventsWrapper.setState({ numberOfEvents: wantedIndex })
     const suggestions = CitySearchWrapper.state('suggestions');
     const selectedIndex = Math.floor(Math.random() * (suggestions.length));
     const selectedCity = suggestions[selectedIndex];
@@ -86,10 +86,10 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('App passes "showEventCount" state as a prop to EventList', () => {
+  test('App passes "numberOfEvents" state as a prop to EventList', () => {
     const AppWrapper = mount(<App />);
-    AppWrapper.setState({ showEventCount: 10 });
-    const AppEventsState = AppWrapper.state('showEventCount');
+    AppWrapper.setState({ numberOfEvents: 10 });
+    const AppEventsState = AppWrapper.state('numberOfEvents');
     expect(AppEventsState).not.toEqual(undefined);
     // expect(AppWrapper.find(EventList).props().showEventCount).toEqual(AppEventsState);
     AppWrapper.unmount();
@@ -97,13 +97,13 @@ describe('<App /> integration', () => {
 
   test('no change if no user number selection', () => {
     const AppWrapper = mount(<App />);
-    AppWrapper.setState({ showEventCount: 32 })
-    const AppEventsState = AppWrapper.state('showEventCount');
+    AppWrapper.setState({ numberOfEvents: 32 })
+    const AppEventsState = AppWrapper.state('numberOfEvents');
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
     const eventObject = { target: { value: "" } };
     NumberOfEventsWrapper.find('.viewNumber').simulate('change', eventObject);
     expect(AppEventsState).not.toEqual(undefined);
-    expect(AppWrapper.state('showEventCount')).toEqual(32);
+    expect(AppWrapper.state('numberOfEvents')).toEqual(32);
     AppWrapper.unmount();
   });
 

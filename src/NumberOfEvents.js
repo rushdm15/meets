@@ -42,7 +42,7 @@ class NumberOfEvents extends Component {
       <input
         type="number"
         className="viewNumber"
-        value={this.state.eventCount}
+        value={this.state.numberOfEvents}
         onChange={this.handleInputChanged}
       />
       <ErrorAlert text={this.state.infoText} />
