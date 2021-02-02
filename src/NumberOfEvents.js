@@ -5,7 +5,7 @@ class NumberOfEvents extends Component {
 
   // use default 32
   state = {
-    eventCount: this.props.numberOfEvents || 32
+    eventCount: this.props.numberOfEvents
   }
 
   handleInputChanged = (event) => {
@@ -32,7 +32,7 @@ class NumberOfEvents extends Component {
       <input
         type="number"
         className="event-number"
-        value={this.state.numberOfEvents}
+        value={this.props.numberOfEvents}
         onChange={this.handleInputChanged}
       />
       <ErrorAlert text={this.state.infoText} />
