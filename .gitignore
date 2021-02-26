@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 .eslintcache
+auth-server/node_modules/.bin/gp12-pem
