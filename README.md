@@ -2,6 +2,8 @@
 [URL To App](https://rushdm15.github.io/meets)
 # Getting Started with Create React App
 
+[pic.png](https://github.com/rushdm15/meets/blob/master/pic.png?raw=true)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
